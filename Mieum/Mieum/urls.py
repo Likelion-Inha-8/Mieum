@@ -1,4 +1,4 @@
-"""Mieumproject URL Configuration
+"""Mieum URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -15,14 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls.static import static
-from django.conf import settings
-
-#이미지로 접근하는 주소를 추가 . static(통과시키는 url, document_root=실제 연결할 저장장소)
-
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
-urlpatterns += static(settings.MEDIA_URL , document_root=settings.MEDIA_URL)
