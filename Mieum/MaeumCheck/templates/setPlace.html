@@ -1,0 +1,16 @@
+<form id="PlaceforCreate" action="{% url 'SavePlace' %}" method ="post">
+{% csrf_token %}
+
+<div>
+    <input type="text" name="name">
+</div>
+<div>
+    <input type="text" name="address">
+</div>
+<div>
+    <input type="number" name="maxpeople">
+</div>
+<div>
+    <input type="submit" value="저장">
+</div>
+</form>

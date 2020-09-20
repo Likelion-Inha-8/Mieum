@@ -1,0 +1,10 @@
+{% for place in places %}
+    {{place.name}} = 
+    {%  if place.congestion == 0 %}
+        여유
+    {% elif target.congestion == 1 %}
+        보통
+    {% elif target.congestion == 2 %}
+        혼잡
+    {%  endif %}
+{% endfor %}
