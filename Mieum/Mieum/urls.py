@@ -20,4 +20,9 @@ import MaeumCheck.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',MaeumCheck.views.home,name='home'),
+    path('search/',MaeumCheck.views.congestionsearch,name='congestionsearch'),
+    path('setplace/',MaeumCheck.views.SetPlace,name='SetPlace'),
+    path('saveplace/',MaeumCheck.views.SavePlace,name='SavePlace'),
+    path('qrshow/<int:id>',MaeumCheck.views.QRShow,name='QRShow'),
+    path('mypage/',MaeumCheck.views.MyPage,name='MyPage'),
 ]
