@@ -1,16 +1,32 @@
-<form id="PlaceforCreate" action="{% url 'SavePlace' %}" method ="post">
-{% csrf_token %}
+{% extends 'base.html' %}
 
-<div>
-    공간 명<input type="text" name="name">
-</div>
-<div>
-    주소<input type="text" name="address">
-</div>
-<div>
-    최대 인원<input type="number" name="maxpeople">
-</div>
-<div>
-    <input type="submit" value="저장">
-</div>
+{% block title %}
+
+        공간생성 : 마음체크
+
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+
+<form id="PlaceforCreate" action="{% url 'SavePlace' %}" method ="post">
+    {% csrf_token %}
+    <div>
+        공간 명<input type="text" name="name">
+    </div>
+    <div>
+        주소<input type="text" name="address">
+    </div>
+    <div>
+        최대 인원<input type="number" name="maxpeople">
+    </div>
+    <div>
+        <input type="submit" value="저장">
+    </div>
 </form>
+
+
+{% endblock %}
