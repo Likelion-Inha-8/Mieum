@@ -16,13 +16,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import MaeumCheck.views
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',MaeumCheck.views.home,name='home'),
     path('search/',MaeumCheck.views.congestionsearch,name='congestionsearch'),
     path('setplace/',MaeumCheck.views.SetPlace,name='SetPlace'),
+    path('setmeeting/',MaeumCheck.views.SetMeeting,name='SetMeeting'),
     path('saveplace/',MaeumCheck.views.SavePlace,name='SavePlace'),
-    path('qrshow/<int:id>',MaeumCheck.views.QRShow,name='QRShow'),
+    path('savemeeting/',MaeumCheck.views.SaveMeeting,name='SaveMeeting'),
+    path('placeqrshow/<int:id>',MaeumCheck.views.PlaceQRShow,name='PlaceQRShow'),
+    path('meetingqrshow/<int:id>',MaeumCheck.views.MeetingQRShow,name='MeetingQRShow'),
     path('mypage/',MaeumCheck.views.MyPage,name='MyPage'),
+    path('placeqrcodeimg/<int:code_id>',MaeumCheck.views.PlacegenQR,name="PlaceQRCodeImg"),
+    path('placeqrcodeimg/exit/<int:code_id>/img/',MaeumCheck.views.PlaceExitgenQR,name="PlaceExitQRCodeImg"),
+    path('meetingqrcodeimg/<int:code_id>',MaeumCheck.views.MeetinggenQR,name="MeetingQRCodeImg"),
+    path('placeqrshow/<int:code_id>/comments/',MaeumCheck.views.PlaceSaveComplete,name="PlaceSaveComplete"),
+    path('meetingqrshow/<int:code_id>/comments/',MaeumCheck.views.MeetingSaveComplete,name="MeetingSaveComplete"),    
+    path('accounts/', include('allauth.urls')),
+    path('mylist/',MaeumCheck.views.MyList,name='MyList'),
+    path('placeqrshow/<int:code_id>/exit/', MaeumCheck.views.Getout, name="Getout"),
 ]

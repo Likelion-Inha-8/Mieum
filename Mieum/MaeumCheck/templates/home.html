@@ -1,18 +1,180 @@
-<h1>
-    Hello,world!
-</h1>
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
 
-<form id="SearchCongestion" action="{% url 'congestionsearch' %}" method ="post">
-    {% csrf_token %}
-<div>
-    <input type="text" name="data">
-</div>
-<div>
-    <input type="submit" value="검색">
-</div>
-<div>
-    <a href="{% url 'SetPlace' %}">
-        QR 생성
-    </a>
-</div>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        html {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0%;
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 0%;
+            width: 100%;
+
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url("{% static 'img/back.jpg' %}")
+        }
+
+        .topMenu {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            height: 70px;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            list-style-type: none;
+        }
+
+        .menuLink {
+
+            margin-top: 10px;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .menuLink a {
+            color : white;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+
+        }
+        #topMenu a:link{
+            color : white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #topMenu a:visited{
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #naver a:link{
+            color:greenyellow;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #naver a:visited{
+            color:greenyellow;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .logo {
+
+            width: 290px;
+            height: 290px;
+            margin: 150px auto 0 auto;
+
+
+        }
+
+
+
+        p {
+            margin-left: 23%;
+            padding-bottom: 30px;
+            padding-top: 10px;
+            width: 280px;
+            height: 10px;
+            font-family: NotoSansKR;
+            font-size: 15px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.0;
+            letter-spacing: normal;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        input {
+
+            vertical-align: middle;
+            flex-direction: row;
+        }
+
+        input.data {
+            background-image: url("{% static 'img/사각형 1099.png' %}");
+            background-repeat: no-repeat;
+            background-position: 5px;
+        }
+
+        /* input.click {
+            
+        } */
+
+        .qr {
+            vertical-align: middle;
+            width: 620px;
+            height: 70px;
+            object-fit: contain;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav style="background-color: black; height: 70px; width: 100%; top:0; left:0; position: absolute;">
+        <ul class="topMenu" id="topMenu" style="left:10%; position:absolute;">
+            <li><a class="menuLink" href="#">마음체크</a></li>
+            <li><a class="menuLink" href="#">방문 기록 조회</a></li>
+        </ul>
+            <div style = "text-align: right;">
+                {% if user.is_authenticated %}
+                    <div style = "color:white; position: absolute; top: 25px; right:10%;">{{name}}님, 환영합니다!</div>
+                {% else %}
+                    <div id="naver" style = "color:white; position: absolute; top: 25px; right:10%;"><a href="{% provider_login_url 'naver' %}">네이버 아이디로 로그인</a></div>
+                {% endif %}
+            </div>
+
+    </nav>
+
+
+    <div class='logo'>
+        <img src="{% static 'img/마음체크.png' %}">
+    </div>
+
+
+    <form id="SearchCongestion" action="{% url 'congestionsearch' %}" method="post">
+        {% csrf_token %}
+        <div style="width:fit-content; height: 70px; margin: 0 auto;">
+            <input type="text" name="data" class="data" style="width: 400px; margin-top: 30px; height: 30px; padding-left: 30px; float: left; border-radius: 30px;">
+            <input type="submit" value="검색" id="click" class="click" style="float: left; height: 36px; margin-top: 30px; border-radius: 30px; color: white; font-family: 'Noto Sans KR', sans-serif; font-weight: bold; background-color: darkorange;">
+        </div>
+
+        <div style="width: fit-content; margin: 0 auto; color:white; font-weight: bold; font-size: 14pt; margin-bottom: 15px;">
+            by 마음을 전하는 미음미음
+        </div>
+        <div style="width: fit-content; margin: 0 auto;">
+            <div>
+                <a href="{% url 'SetPlace' %}" class="qr">
+                    <img src="{% static 'img/Title.png' %}" style="width:400px; margin-bottom: 5px;">
+                </a>
+
+            </div>
+            <div>
+                <a href="{% url 'SetMeeting' %}" class="qr">
+                    <img src="{% static 'img/meeting.png' %}" style="width:400px;">
+                </a>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

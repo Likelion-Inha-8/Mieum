@@ -3,12 +3,18 @@ from django.conf import settings
 
 # Create your models here.
 
-class Meeting(models.Model):
+class Space(models.Model):
     name = models.CharField(max_length=50)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
 
-class Place(Meeting):
+    class Meta:
+        abstract=True
+
+class Meeting(Space):
+    pass
+
+class Place(Space):
     address = models.CharField(max_length=100)
     maxPeople = models.IntegerField()
     currentPeople = models.IntegerField()
@@ -16,10 +22,10 @@ class Place(Meeting):
 
 class Meeting_Visit(models.Model):
     visited_at = models.DateTimeField(auto_now_add=True)
-    visiter = models.CharField(max_length=50)
+    visiter = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
     meeting = models.ForeignKey(Meeting,on_delete=models.PROTECT)
 
 class Place_Visit(models.Model):
     visited_at = models.DateTimeField(auto_now_add=True)
-    visiter = models.CharField(max_length=50)
+    visiter = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
     place = models.ForeignKey(Place,on_delete=models.PROTECT)
