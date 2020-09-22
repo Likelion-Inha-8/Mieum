@@ -1,4 +1,6 @@
 {% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,10 +16,9 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-image: url("{% static 'img/back.jpg' %}")
-        }
+        } 
 
         .topMenu {
-
             align-items: center;
             display: flex;
             flex-direction: row;
@@ -111,10 +112,19 @@
 
     <nav>
         <ul class="topMenu">
+            <div style="float:left">
             <li><a class="menuLink" href="#">마음체크</a></li>
             <li><a class="menuLink" href="#">방문 기록 조회</a></li>
-            <span id="naver"><a href="{% provider_login_url 'naver' %}">네이버 아이디로 로그인</a></span>
-        </ul>
+        </div>
+        </ul>   
+            <div style = "text-align: right; float: right;">
+                {% if user.is_authenticated %}
+                    <div style = "color:white;">{{name}}님, 환영합니다!</div>
+                {% else %}
+                    <div id="naver"><a href="{% provider_login_url 'naver' %}">네이버 아이디로 로그인</a></div>
+                {% endif %}
+            </div>
+        
     </nav>
 
 
@@ -141,6 +151,11 @@
                 <img src="{% static 'img/Title.png' %}">
             </a>
 
+        </div>
+        <div>
+            <a href="{% url 'SetMeeting' %}" class="qr">
+                <img src="{% static 'img/Title.png' %}">
+            </a>
         </div>
     </form>
 </body>

@@ -1,0 +1,11 @@
+<form id="MeetingforCreate" action="{% url 'SaveMeeting' %}" method ="post">
+{% csrf_token %}
+    
+<div>
+    Meeting 명<input type="text" name="name">
+</div>
+
+<div>
+    <input type="submit" value="저장">
+</div>
+</form>
