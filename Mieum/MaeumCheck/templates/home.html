@@ -133,7 +133,7 @@
     <nav style="background-color: black; height: 70px; width: 100%; top:0; left:0; position: absolute;">
         <ul class="topMenu" id="topMenu" style="left:10%; position:absolute;">
             <li><a class="menuLink" href="#">마음체크</a></li>
-            <li><a class="menuLink" href="#">방문 기록 조회</a></li>
+            <li><a class="menuLink" href="{% url 'MyVisited' %}">방문 기록 조회</a></li>
         </ul>
             <div style = "text-align: right;">
                 {% if user.is_authenticated %}

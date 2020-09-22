@@ -18,7 +18,7 @@ def home(request):
 def congestionsearch(request):
     data = request.POST.get('data')
     places = Place.objects.filter(name__icontains=data)
-    return render(request, 'congestionsearch.html',{'places':places})
+    return render(request, 'congestionsearch.html',{'places':places, 'data':data})
 
 @login_required
 def SetPlace(request):
@@ -46,6 +46,8 @@ def SaveMeeting(request):
     if request.method == 'POST':
         meeting = Meeting()
         meeting.name = request.POST.get('name')
+        meeting.Start_Time = request.POST.get('start')
+        meeting.End_Time = request.POST.get('end')
         meeting.owner = request.user
         meeting.save()
     return redirect('MyList')
@@ -67,8 +69,10 @@ def MeetingQRShow(request,id):
     return render(request, 'MeetingQR.html',{'meeting':meeting})
 
 @login_required
-def MyPage(request):
-    pass
+def MyVisited(request):
+    visitedplaces = Place_Visit.objects.filter(visiter=request.user).order_by('-visited_at')
+    visitedmeetings = Meeting_Visit.objects.filter(visiter=request.user).order_by('-visited_at')
+    return render(request, 'MyVisited.html',{'visitedplaces':visitedplaces, 'visitedmeetings':visitedmeetings})
 
 @login_required
 def PlacegenQR(request, code_id):
@@ -121,6 +125,10 @@ def MeetingSaveComplete(request,code_id):
     visit_write.visiter = request.user
     visit_write.meeting = get_object_or_404(Meeting,pk=code_id)
     visit_write.save()
+    if visit_write.visited_at > visit_write.meeting.End_Time:
+        meeting = get_object_or_404(Meeting,pk=code_id)
+        meeting.delete()
+        return render(request, 'delete.html')
     return render(request,'complete.html')
 
 def QRCodeImg(request,code_id):
@@ -142,3 +150,13 @@ def Getout(request,code_id):
     print(outPlace.currentPeople)
     outPlace.save()
     return render(request,'complete.html')
+
+def DeletePlace(request,id):
+    place = get_object_or_404(Place,pk=id)
+    place.delete()
+    return render(request,'delete.html')
+
+def DeleteMeeting(request,id):
+    meeting = get_object_or_404(Meeting,pk=id)
+    meeting.delete()
+    return render(request,'delete.html')

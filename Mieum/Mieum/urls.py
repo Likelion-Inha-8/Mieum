@@ -28,7 +28,7 @@ urlpatterns = [
     path('savemeeting/',MaeumCheck.views.SaveMeeting,name='SaveMeeting'),
     path('placeqrshow/<int:id>',MaeumCheck.views.PlaceQRShow,name='PlaceQRShow'),
     path('meetingqrshow/<int:id>',MaeumCheck.views.MeetingQRShow,name='MeetingQRShow'),
-    path('mypage/',MaeumCheck.views.MyPage,name='MyPage'),
+    path('myvisited/',MaeumCheck.views.MyVisited,name='MyVisited'),
     path('placeqrcodeimg/<int:code_id>',MaeumCheck.views.PlacegenQR,name="PlaceQRCodeImg"),
     path('placeqrcodeimg/exit/<int:code_id>/img/',MaeumCheck.views.PlaceExitgenQR,name="PlaceExitQRCodeImg"),
     path('meetingqrcodeimg/<int:code_id>',MaeumCheck.views.MeetinggenQR,name="MeetingQRCodeImg"),
@@ -37,4 +37,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('mylist/',MaeumCheck.views.MyList,name='MyList'),
     path('placeqrshow/<int:code_id>/exit/', MaeumCheck.views.Getout, name="Getout"),
+    path('deleteplace/<int:id>',MaeumCheck.views.DeletePlace, name="DeletePlace"),
+    path('deletemeeting/<int:id>',MaeumCheck.views.DeleteMeeting, name="DeleteMeeting"),
 ]

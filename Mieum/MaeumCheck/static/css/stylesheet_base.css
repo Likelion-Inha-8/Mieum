@@ -8,22 +8,62 @@ html, body {
 
 h1 {
     color : #2699FB;
-    font-size : 18pt;
+    font-size : 20pt;
+    text-align: center;
  }
+
+.logo{
+    font-size: 16pt;
+    font-weight: bold;
+}
 
 h2 {
 
     color : #2699FB;
-    font-size : 14pt;
+    font-size : 16pt;
+}
+
+h3{
+    font-size: 12pt;
+    text-align: center;
+}
+
+.submit {
+    background-color: #2699FB;
+    border-radius: 50px;
+    border: 0px;
+    height: 45px;
+    width: 300px;
+    color : white;
+    font-weight: bold;
+    font-size : 12pt;
+    font-family: 'Noto Sans KR', sans-serif;
+
+}
+
+#submit{
+    margin: 50px auto 0 auto;
+    width: fit-content;
+
+}
+
+.topMenu{
+    left:10%;
+    float:left;
+    position:absolute;
 }
 
 .textbox{
     color : #2699FB;
     border-radius : 50px;
     border : #707070 1px solid;
-    
+    height: 45px;
+    width: 500px;
+    margin-top: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align: center;
+    font-size : 16pt;
 }
-
 
 
 nav {
@@ -32,5 +72,50 @@ nav {
     position : absolute;
     left:0;
     top:0;
+    height: 70px;
 
+}
+
+.topMenu{
+    margin-top :  20px;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    padding: 0px;
+}
+
+.topMenu li {
+    margin-left: 15px;
+}
+
+#topMenu a:link{
+    color: white;
+    text-decoration: none;
+}
+
+
+#topMenu a:visited{
+    color: white;
+    text-decoration: none;
+}
+
+#container{
+    max-width: 840px;
+    margin : 140px auto 0 auto;
+}
+
+#form{
+    width: min-content;
+    margin: 0 auto;
+}
+
+#comment a:link{
+    color : orange;
+    text-decoration: none;
+}
+
+#comment a:visited{
+    color : orange;
+    text-decoration: none;
 }

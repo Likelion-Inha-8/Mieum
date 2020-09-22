@@ -5,14 +5,15 @@ from django.conf import settings
 
 class Space(models.Model):
     name = models.CharField(max_length=50)
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         abstract=True
 
 class Meeting(Space):
-    pass
+    Start_Time = models.TimeField()
+    End_Time = models.TimeField()
 
 class Place(Space):
     address = models.CharField(max_length=100)
@@ -21,11 +22,11 @@ class Place(Space):
     congestion = models.IntegerField()
 
 class Meeting_Visit(models.Model):
-    visited_at = models.DateTimeField(auto_now_add=True)
-    visiter = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
-    meeting = models.ForeignKey(Meeting,on_delete=models.PROTECT)
+    visited_at = models.TimeField(auto_now_add=True)
+    visiter = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    meeting = models.ForeignKey(Meeting,on_delete=models.CASCADE)
 
 class Place_Visit(models.Model):
     visited_at = models.DateTimeField(auto_now_add=True)
-    visiter = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
-    place = models.ForeignKey(Place,on_delete=models.PROTECT)
+    visiter = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    place = models.ForeignKey(Place,on_delete=models.CASCADE)

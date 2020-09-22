@@ -1,10 +1,72 @@
-{% for place in places %}
-    {{place.name}} = 
-    {%  if place.congestion == 0 %}
-        여유
-    {% elif place.congestion == 1 %}
-        보통
-    {% elif place.congestion == 2 %}
-        혼잡
-    {%  endif %}
-{% endfor %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+혼잡도
+{% endblock %}
+
+{% block head %}
+
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+        html {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0%;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0%;
+            width: 100%;
+
+            background-size: cover;
+            background-repeat: no-repeat;
+
+        }
+
+        input {
+
+            vertical-align: middle;
+            flex-direction: row;
+        }
+    </style>
+</head>
+
+{% endblock %}
+
+{% block body %}
+<div id="formm" style="text-align: center; font-size: large;">
+    <h1 style="color: #2699FB; font-size: 40px;">혼잡도 검색 결과</h1>
+
+    <form id="SearchCongestion" action="{% url 'congestionsearch' %}" method="post">
+        {% csrf_token %}
+        <div style="width:fit-content; height: 70px; margin: 0 auto;">
+            <input type="text" placeholder="{{data}}" name="data" class="data"
+                style="width: 400px; margin-top: 30px; height: 30px; padding-left: 30px; float: left; border-radius: 30px;">
+            <input type="submit" value="검색" id="click" class="click"
+                style="float: left; height: 30px; margin-top: 30px; border-radius: 30px; color: white; font-family: 'Noto Sans KR', sans-serif; font-weight: bold; background-color: darkorange;">
+        </div>
+    </form>
+
+
+    <div style="padding-top:20px ;">
+        {% for place in places %}
+        <h3 style="font-size: 20px;">{{place.name}} =
+            {%  if place.congestion == 0 %}
+            <piv style="color: #2bfc01;">여유</piv>
+        </h3>
+        {% elif place.congestion == 1 %}
+        <piv style="color: orange;">보통</piv>
+        </h3>
+        {% elif place.congestion == 2 %}
+        <piv style="color: rgb(226, 43, 43)">혼잡</piv>
+        </h3>
+        {%  endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
