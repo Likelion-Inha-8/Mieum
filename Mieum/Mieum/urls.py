@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import MaeumCheck.views
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +26,7 @@ urlpatterns = [
     path('saveplace/',MaeumCheck.views.SavePlace,name='SavePlace'),
     path('qrshow/<int:id>',MaeumCheck.views.QRShow,name='QRShow'),
     path('mypage/',MaeumCheck.views.MyPage,name='MyPage'),
+    path('qrcodeimg/<int:code_id>',MaeumCheck.views.genQR,name="QRCodeImg"),
+    path('savecomplete/<int:id>',MaeumCheck.views.SaveComplete,name="SaveComplete"),
+    path('accounts/', include('allauth.urls')),
 ]

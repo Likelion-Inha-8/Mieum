@@ -16,10 +16,10 @@ class Place(Meeting):
 
 class Meeting_Visit(models.Model):
     visited_at = models.DateTimeField(auto_now_add=True)
-    visiter = models.CharField(max_length=50)
+    visiter = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
     meeting = models.ForeignKey(Meeting,on_delete=models.PROTECT)
 
 class Place_Visit(models.Model):
     visited_at = models.DateTimeField(auto_now_add=True)
-    visiter = models.CharField(max_length=50)
+    visiter = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.PROTECT)
     place = models.ForeignKey(Place,on_delete=models.PROTECT)

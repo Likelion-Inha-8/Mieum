@@ -11,8 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib import auth
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'MaeumCheck.apps.MaeumcheckConfig',
+    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -140,8 +143,8 @@ SOCIALACCOUNT_PROVIDERS = {
         # (``socialaccount`` app) containing the required client
         # credentials, or list them here:
         'APP': {
-            'client_id': get_secret("NAVER_CLIENT_ID"),
-            'secret': get_secret("NAVER_SECRET_KEY"),
+            'client_id': "8LDgBlKgj9M7VokNYgBD",
+            'secret': "inXCoHSHwY",
             'key': ''
         }
     }

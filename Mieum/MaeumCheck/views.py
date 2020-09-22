@@ -1,5 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
+import qrcode
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+from allauth.socialaccount.models import SocialAccount
+
 
 # Create your views here.
 
@@ -30,6 +35,21 @@ def QRShow(request,id):
     place = get_object_or_404(Place,pk=id)
     return render(request, 'QR.html',{'place':place})
 
-
 def MyPage(request):
     pass
+
+def genQR(request, code_id):
+    url = 'qrshow/' + str(code_id) + '/comment/'
+    img = qrcode.make(url)
+    response = HttpResponse(content_type="image/png")
+    img = img.save(response, "png") # 사진을 만든다 -> 이름을 붙여줄 주소가 필요하다
+    return (response)
+
+def SaveComplete(request,id):
+    visit_write = Place_Visit()
+    visit_write.visiter = request.user
+    visit_write.save()
+    return render(request,'complete.html')
+
+def QRCodeImg(request,code_id):
+    return (genQR(code_id))
