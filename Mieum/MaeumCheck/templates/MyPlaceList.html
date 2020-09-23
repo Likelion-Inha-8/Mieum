@@ -1,9 +1,50 @@
-<h1>
-    My Place
-</h1>
-<br>
-{% for place in places %}
-    <a href = "{% url 'PlaceQRShow' place.id %}">{{place.name}}</a>
-    <a href = "{% url 'DeletePlace' place.id %}">삭제</a>
-    <br>
-{% endfor %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+
+        공간생성 : 마음체크
+
+{% endblock %}
+
+{% block head %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet_mypage.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div id = "form">
+
+    <h1>My Place</h1>
+
+    <div id = "object">
+
+
+    {% for place in places %}
+        <div class = "item">
+        <div class = "item-header">
+            <img src="{% url 'PlaceQRCodeImg' place.id %}">
+        </div>
+            <div class="item-bottom">
+          <a style="font-size: 16pt;" href = "{% url 'PlaceQRShow' place.id %}">{{place.name}}</a><br>
+                <h5>{{ place.address }}</h5>
+                 <br>
+                <a class="delete-btn" href = "{% url 'DeletePlace' place.id %}">삭제</a>
+            </div>
+        </div>
+    {% endfor %}
+
+
+    </div>
+
+    <a href="{% url 'SetPlace' %}" class="qr">
+        <img src="{% static 'img/Title.png' %}" style="width:400px; margin-bottom: 5px;">
+    </a>
+
+    </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
