@@ -1,8 +1,15 @@
-<h1>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<h2 style="color: #3e84f9; text-align: center; ">
     My Visited Place
-</h1>
-<br>
-{% for visitedplace in visitedplaces %}
-    {{visitedplace.place.name}}을 {{visitedplace.visited_at}}에 다녀갔습니다.
+</h2>
+<form style="text-align: center; color: black; font-size: large;">
     <br>
-{% endfor %}
+    {% for visitedplace in visitedplaces %}
+    {{visitedplace.id}}. {{visitedplace.place.name}}을 {{visitedplace.visited_at}}에 다녀갔습니다.
+    <br>
+    {% endfor %}
+</form>
+{% endblock %}

@@ -1,9 +1,47 @@
-<h1>
-    My Meeting
-</h1>
-<br>
-{% for meeting in meetings %}
-    <a href = "{% url 'MeetingQRShow' meeting.id %}">{{meeting.name}}</a>
-    <a href = "{% url 'DeleteMeeting' meeting.id %}">삭제</a>
-    <br>
-{% endfor %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+
+        공간생성 : 마음체크
+
+{% endblock %}
+
+{% block head %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet_mypage.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div id = "form">
+
+    <h1>My Meeting</h1>
+
+    <div id = "object">
+
+
+    {% for meeting in meetings %}
+        <div class = "item">
+        <div class = "item-header">
+            <img src="{% url 'MeetingQRCodeImg' meeting.id %}">
+        </div>
+            <div class="item-bottom">
+        <a style="font-size: 16pt;" href = "{% url 'MeetingQRShow' meeting.id %}">{{meeting.name}}</a>
+        <br>
+                <h5>{{ meeting.Start_Time }} ~ {{ meeting.End_Time }}</h5>
+                 <br>
+                <a class="delete-btn" href = "{% url 'DeleteMeeting' meeting.id %}">삭제</a>
+            </div>
+        </div>
+    {% endfor %}
+
+    </div>
+
+    <a href="{% url 'SetMeeting' %}" class="qr">
+        <img src="{% static 'img/meeting.png' %}" style="width:400px;">
+    </a>
+
+    </div>
+
+{% endblock %}
+
+
+
