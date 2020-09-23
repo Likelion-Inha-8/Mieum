@@ -1,14 +1,4 @@
 <h1>
-    My Place
-</h1>
-<br>
-{% for place in places %}
-    <a href = "{% url 'PlaceQRShow' place.id %}">{{place.name}}</a>
-    <a href = "{% url 'DeletePlace' place.id %}">삭제</a>
-    <br>
-{% endfor %}
-
-<h1>
     My Meeting
 </h1>
 <br>

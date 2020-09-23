@@ -39,7 +39,7 @@ def SavePlace(request):
         place.congestion = 0
         place.address = request.POST.get('address')
         place.save()
-    return redirect('MyList')
+    return redirect('MyPlaceList')
 
 @login_required
 def SaveMeeting(request):
@@ -50,13 +50,17 @@ def SaveMeeting(request):
         meeting.End_Time = request.POST.get('end')
         meeting.owner = request.user
         meeting.save()
-    return redirect('MyList')
+    return redirect('MyMeetingList')
 
 @login_required
-def MyList(request):
+def MyPlaceList(request):
     places = Place.objects.filter(owner=request.user).order_by('-id')
+    return render(request, 'MyPlaceList.html',{'places':places})
+
+@login_required
+def MyMeetingList(request):
     meetings = Meeting.objects.filter(owner=request.user).order_by('-id')
-    return render(request, 'list.html',{'places':places, 'meetings':meetings})
+    return render(request, 'MyMeetingList.html',{'meetings':meetings})
 
 @login_required
 def PlaceQRShow(request,id):
@@ -69,10 +73,13 @@ def MeetingQRShow(request,id):
     return render(request, 'MeetingQR.html',{'meeting':meeting})
 
 @login_required
-def MyVisited(request):
+def MyVisitedPlace(request):
     visitedplaces = Place_Visit.objects.filter(visiter=request.user).order_by('-visited_at')
+    return render(request, 'MyVisitedPlace.html',{'visitedplaces':visitedplaces})
+
+def MyVisitedMeeting(request):
     visitedmeetings = Meeting_Visit.objects.filter(visiter=request.user).order_by('-visited_at')
-    return render(request, 'MyVisited.html',{'visitedplaces':visitedplaces, 'visitedmeetings':visitedmeetings})
+    return render(request, 'MyVisitedMeeting.html',{'visitedmeetings':visitedmeetings})
 
 @login_required
 def PlacegenQR(request, code_id):
