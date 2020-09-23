@@ -1,11 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+        공간생성 : 마음체크
+
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <div id = "form">
+    <h1>QR 모임 지정</h1>
+
 <form id="MeetingforCreate" action="{% url 'SaveMeeting' %}" method ="post">
 {% csrf_token %}
-    
-<div>
-    Meeting 명<input type="text" name="name">
-</div>
 
 <div>
-    <input type="submit" value="저장">
+    <input class="textbox" type="text" placeholder="모임명을 입력해주세요" name="name">
+</div>
+    <div>
+    <input class="textbox" type="time" placeholder="시작시간을 입력해주세요" name="start">
+    <input class="textbox" type="time" placeholder="종료시간을 입력해주세요" name="end">
+    </div>
+    <div id = "submit">
+    <input class="submit" type="submit" value="QR 코드 생성">
 </div>
 </form>
+        <div id = "comment">
+        <h3>공간 QR을 생성하시고 싶으신가요? <a href="{% url "SetPlace" %}"}>Place QR 생성</a></h3>
+    </div>
+    </div>
+
+{% endblock %}

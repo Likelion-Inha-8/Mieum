@@ -1,0 +1,8 @@
+<h1>
+    My Visited Meeting
+</h1>
+<br>
+{% for visitedmeeting in visitedmeetings %}
+    {{visitedmeeting.meeting.name}}을 {{visitedmeeting.visited_at}}에 다녀갔습니다.
+    <br>
+{% endfor %}

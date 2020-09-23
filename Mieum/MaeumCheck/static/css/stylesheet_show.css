@@ -1,0 +1,46 @@
+#form {
+    background-color: #2699FB;
+    border-radius: 30px;
+    width: 600px;
+    height: 600px;
+}
+
+#form h1 {
+    padding-top: 25px;
+    color : black;
+    margin-bottom: 0;
+
+}
+
+#form h3 {
+    color : black;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 14pt;
+
+}
+
+#form img{
+    margin : 0 auto;
+    display: block;
+}
+
+#form h4 {
+    text-align: center;
+    margin : 5px;
+
+}
+
+.white {
+    color : white;
+}
+
+#form h4{
+    text-align: center;
+    margin : 10px;
+}
+
+.orange{
+    color : orange;
+}

@@ -1,9 +1,25 @@
-<h1>
-{{place.name}}
-</h1>
+#PlaceQR.html
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
 
-<br>
-{{place.address}}
+        공간 QR : 마음체크
 
-<br>
-<img src = {% url 'PlaceQRCodeImg' place.id %}>
+{% endblock %}
+
+{% block head %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet_show.css' %}">
+{% endblock %}
+
+{% block body %}
+
+    <div id = "form" style="margin-top: -50px;">
+        <h1>{{place.name}}</h1>
+        <h3>{{place.address}}</h3>
+        <img src = {% url 'PlaceQRCodeImg' place.id %}>
+        <h4 class="white">입장용 코드</h4>
+    <h4 class="orange">입장 전에 본 QR코드를 찍어주세요!</h4>
+    </div>
+
+
+{% endblock %}
